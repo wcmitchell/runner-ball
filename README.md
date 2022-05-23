@@ -16,12 +16,24 @@ conditions, and other data will be sourced via YAML.
 * Python 3.9
 * Pipenv
 
-### Installing
+### Running the app
 
+Install dependencies:
 ```bash
 $ pipenv --python 3.9
 $ pipenv shell
 $ pipenv install
+```
+
+Set your environment by saving `.env-example` as `.env`:
+```
+BULB_HOST="the host of your smart bulb (see Kasa docs below)"
+INTERVAL_SECONDS="how often the event loop should run in seconds"
+```
+
+Run:
+```
+$ ./app.py
 ```
 
 ## License
