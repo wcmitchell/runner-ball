@@ -3,7 +3,7 @@ import os
 import time
 
 from dotenv import load_dotenv
-from apis.bulb import Bulb
+from lib.bulb import Bulb
 from lib.signal_handler import SignalHandler
 
 load_dotenv()
