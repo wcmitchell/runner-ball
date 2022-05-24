@@ -46,6 +46,7 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 * Power with a Raspberry Pi to run on boot
 * Power the user-driven data with a UI
+* Indicate forecasted changes (either positive or negative) with a short burst in either direction of the "score" gradient
 
 ## Resources
 
