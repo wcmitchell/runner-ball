@@ -1,4 +1,3 @@
-
 import signal
 
 class SignalHandler:
