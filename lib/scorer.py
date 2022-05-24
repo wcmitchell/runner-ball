@@ -56,7 +56,7 @@ class Scorer():
 
         return temp_score
 
-    async def report_score(self):
+    async def report(self):
         print("\n====== Running Score ======")
         print(f"Score:          {self.score()}/10")
         print(f"Ideal Min Temp: {self.preferences.get('weather').get('temperature').get('ideal_min')}")

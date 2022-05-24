@@ -1,12 +1,12 @@
 from kasa import SmartBulb
 
 class Bulb(SmartBulb):
-    async def report_bulb_state(bulb):
-        await bulb.update()
+    async def report(self):
+        await self.update()
 
         print("\n====== Bulb Status ======")
-        print(f'Power: {"on" if bulb.is_on else "off"}')
-        print(f'Hue:   {bulb.hsv[0]}')
-        print(f'Sat:   {bulb.hsv[1]}')
-        print(f'Val:   {bulb.hsv[2]}')
-        print(f'Temp:  {bulb.color_temp}')
+        print(f'Power: {"on" if self.is_on else "off"}')
+        print(f'Hue:   {self.hsv[0]}')
+        print(f'Sat:   {self.hsv[1]}')
+        print(f'Val:   {self.hsv[2]}')
+        print(f'Temp:  {self.color_temp}')

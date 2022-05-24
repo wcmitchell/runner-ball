@@ -8,6 +8,7 @@ flask = "*"
 pyowm = "*"
 python-kasa = "*"
 python-dotenv = "*"
+pyyaml = "*"
 
 [dev-packages]
 
