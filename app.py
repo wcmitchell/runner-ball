@@ -19,6 +19,7 @@ async def main():
     while signal_handler.KEEP_ALIVE:
         weather_stats = current_weather()
         scorer = Scorer(weather_stats)
+        await bulb.update_from_score(scorer)
 
         await report(bulb, weather_stats, scorer)
         time.sleep(int(os.getenv("INTERVAL_SECONDS")))

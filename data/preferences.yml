@@ -1,8 +1,8 @@
 ---
 weather:
   temperature:
-    ideal_min: 20
-    ideal_max: 70
+    ideal_min: 45
+    ideal_max: 55
     weight: 5
   dew_point:
     ideal_min: 0
