@@ -13,23 +13,23 @@ owm = OWM(os.getenv("OWM_APIKEY"))
 mgr = owm.weather_manager()
 
 class WeatherStats():
-    def __init__(self, currentWeather):
-        self.uv_index = currentWeather.uvi
-        self.heat_index = currentWeather.heat_index
-        self.status = currentWeather.detailed_status
-        self.tempC = currentWeather.temperature('celsius')
-        self.tempF = currentWeather.temperature('fahrenheit')
-        self.humidity = currentWeather.humidity
-        self.cloudpct = currentWeather.clouds
-        self.snow = currentWeather.snow
-        self.rain = currentWeather.rain
+    def __init__(self, current_weather):
+        self.uv_index = current_weather.uvi
+        self.heat_index = current_weather.heat_index
+        self.status = current_weather.detailed_status
+        self.tempC = current_weather.temperature('celsius')
+        self.tempF = current_weather.temperature('fahrenheit')
+        self.humidity = current_weather.humidity
+        self.cloudpct = current_weather.clouds
+        self.snow = current_weather.snow
+        self.rain = current_weather.rain
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
             sort_keys=True, indent=4)
 
 #@weather_api.route('/')
-def currentWeather():
+def current_weather():
     current = mgr.weather_at_place(os.getenv("LOCATION"))
     stats = WeatherStats(current.weather)
     return stats
@@ -42,14 +42,14 @@ def forecast():
         weathers.append[WeatherStats(weather.weather)]
     #return jsonify(weathers)
 
-async def report_weather(current_weather):
+async def report_weather(weather_stats):
     print("\n====== Weather Status ======")
-    print(f"UV Index:        {current_weather.uv_index}")
-    print(f"Heat Index:      {current_weather.heat_index}")
-    print(f"Detailed Status: {current_weather.status}")
-    print(f"Temp (C):        {current_weather.tempC['temp']}")
-    print(f"Temp (F):        {current_weather.tempF['temp']}")
-    print(f"Humidity:        {current_weather.humidity}")
-    print(f"Cloud Cover:     {current_weather.cloudpct}")
-    print(f"Snow:            {current_weather.snow}")
-    print(f"Rain:            {current_weather.rain}")
+    print(f"UV Index:        {weather_stats.uv_index}")
+    print(f"Heat Index:      {weather_stats.heat_index}")
+    print(f"Detailed Status: {weather_stats.status}")
+    print(f"Temp (C):        {weather_stats.tempC['temp']}")
+    print(f"Temp (F):        {weather_stats.tempF['temp']}")
+    print(f"Humidity:        {weather_stats.humidity}")
+    print(f"Cloud Cover:     {weather_stats.cloudpct}")
+    print(f"Snow:            {weather_stats.snow}")
+    print(f"Rain:            {weather_stats.rain}")
