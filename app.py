@@ -3,6 +3,8 @@ import os
 import time
 
 from dotenv import load_dotenv
+from flask import Flask
+from apis.weather import currentWeather
 from lib.bulb import Bulb
 from lib.signal_handler import SignalHandler
 
@@ -15,7 +17,7 @@ async def main():
 
     while signal_handler.KEEP_ALIVE:
         # call the weather API
-        current_weather = {}
+        current_weather = currentWeather()
 
         await log_status(bulb)
         time.sleep(int(os.getenv("INTERVAL_SECONDS")))
