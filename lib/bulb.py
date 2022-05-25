@@ -13,28 +13,21 @@ class Bulb(SmartBulb):
 
     async def update_from_score(self, scorer):
         score = scorer.score
-        if score == 10:
-            hue, saturation, value = [120, 100, 50]
-        elif score == 9:
-            hue, saturation, value = [108, 100, 50]
-        elif score == 8:
-            hue, saturation, value = [96, 100, 50]
-        elif score == 7:
-            hue, saturation, value = [84, 100, 50]
-        elif score == 6:
-            hue, saturation, value = [72, 100, 50]
-        elif score == 5:
-            hue, saturation, value = [60, 100, 50]
+        saturation = 100
+        value = 50
+
+        if score == 5:
+            hue = 120
         elif score == 4:
-            hue, saturation, value = [48, 100, 50]
+            hue = 96
         elif score == 3:
-            hue, saturation, value = [36, 100, 50]
+            hue = 72
         elif score == 2:
-            hue, saturation, value = [24, 100, 50]
+            hue = 48
         elif score == 1:
-            hue, saturation, value = [12, 100, 50]
+            hue = 24
         elif score == 0:
-            hue, saturation, value = [0, 100, 50]
+            hue = 0
 
         await self.update()
         await self.set_hsv(hue, saturation, value)

@@ -1,9 +1,10 @@
 ---
 weather:
   temperature:
-    ideal_min: 45
-    ideal_max: 55
-    weight: 5
+    ideal_min: 40
+    ideal_max: 50
+    weight: 3
   dew_point:
     ideal_min: 0
     ideal_max: 55
+    weight: 5
