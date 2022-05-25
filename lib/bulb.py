@@ -1,5 +1,6 @@
 from kasa import SmartBulb
 from lib.reporter import Reporter
+import time
 
 class Bulb(SmartBulb):
     async def report(self):
@@ -34,4 +35,9 @@ class Bulb(SmartBulb):
             hue = 0
 
         await self.update()
+        await self.blink(hue, saturation)
         await self.set_hsv(hue, saturation, value)
+
+    async def blink(self, hue, saturation):
+        await self.set_hsv(hue, saturation, 0, transition=1000)
+        time.sleep(1)

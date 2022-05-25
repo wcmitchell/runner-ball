@@ -50,5 +50,7 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## Resources
 
-* [Kasa API](https://github.com/python-kasa/python-kasa)
+* [Kasa API Library](https://github.com/python-kasa/python-kasa)
 * [Kasa API Docs](https://python-kasa.readthedocs.io/en/latest/smartdevice.html)
+* [OpenWeather API Library](https://github.com/csparpa/pyowm)
+* [OpenWeather API Docs](https://openweathermap.org/api)
