@@ -4,8 +4,9 @@ import time
 
 from dotenv import load_dotenv
 from flask import Flask
-from apis.weather import current_weather, report_weather
+from apis.weather import current_weather
 from lib.bulb import Bulb
+from lib.scorer import Scorer
 from lib.signal_handler import SignalHandler
 
 load_dotenv()
@@ -16,18 +17,20 @@ async def main():
     await bulb.turn_on()
 
     while signal_handler.KEEP_ALIVE:
-        # call the weather API
         weather_stats = current_weather()
+        scorer = Scorer(weather_stats)
+        await bulb.update_from_score(scorer)
 
-        await log_status(bulb, weather_stats)
+        await report(bulb, weather_stats, scorer)
         time.sleep(int(os.getenv("INTERVAL_SECONDS")))
 
     await bulb.turn_off()
 
-async def log_status(bulb, weather_stats):
+async def report(bulb, weather_stats, scorer):
     os.system("clear")
-    await Bulb.report_bulb_state(bulb)
-    await report_weather(weather_stats)
+    await scorer.report()
+    await weather_stats.report()
+    await bulb.report()
 
 if __name__ == "__main__":
     asyncio.run(main())

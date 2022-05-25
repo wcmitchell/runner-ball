@@ -2,8 +2,8 @@ from dotenv import load_dotenv
 from flask import Blueprint, jsonify
 from pyowm import OWM
 import json
-
 import os
+from lib.reporter import Reporter
 
 #weather_api = Blueprint('weather_api', url_prefix='/weather')
 
@@ -28,6 +28,21 @@ class WeatherStats():
         return json.dumps(self, default=lambda o: o.__dict__,
             sort_keys=True, indent=4)
 
+    async def report(self):
+        data = {
+            "UV Index": self.uv_index,
+            "Heat Index": self.heat_index,
+            "Detailed Status": self.status,
+            "Temp (C)": self.tempC['temp'],
+            "Temp (F)": self.tempF['temp'],
+            "Humidity": self.humidity,
+            "Cloud Cover": self.cloudpct,
+            "Snow": self.snow,
+            "Rain": self.rain
+        }
+        Reporter(title="Weather Status", data=data).report()
+
+
 #@weather_api.route('/')
 def current_weather():
     current = mgr.weather_at_place(os.getenv("LOCATION"))
@@ -41,15 +56,3 @@ def forecast():
     for weather in forecasts:
         weathers.append[WeatherStats(weather.weather)]
     #return jsonify(weathers)
-
-async def report_weather(weather_stats):
-    print("\n====== Weather Status ======")
-    print(f"UV Index:        {weather_stats.uv_index}")
-    print(f"Heat Index:      {weather_stats.heat_index}")
-    print(f"Detailed Status: {weather_stats.status}")
-    print(f"Temp (C):        {weather_stats.tempC['temp']}")
-    print(f"Temp (F):        {weather_stats.tempF['temp']}")
-    print(f"Humidity:        {weather_stats.humidity}")
-    print(f"Cloud Cover:     {weather_stats.cloudpct}")
-    print(f"Snow:            {weather_stats.snow}")
-    print(f"Rain:            {weather_stats.rain}")
