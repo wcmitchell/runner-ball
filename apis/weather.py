@@ -2,8 +2,8 @@ from dotenv import load_dotenv
 from flask import Blueprint, jsonify
 from pyowm import OWM
 import json
-
 import os
+from lib.reporter import Reporter
 
 #weather_api = Blueprint('weather_api', url_prefix='/weather')
 
@@ -29,16 +29,19 @@ class WeatherStats():
             sort_keys=True, indent=4)
 
     async def report(self):
-        print("\n====== Weather Status ======")
-        print(f"UV Index:        {self.uv_index}")
-        print(f"Heat Index:      {self.heat_index}")
-        print(f"Detailed Status: {self.status}")
-        print(f"Temp (C):        {self.tempC['temp']}")
-        print(f"Temp (F):        {self.tempF['temp']}")
-        print(f"Humidity:        {self.humidity}")
-        print(f"Cloud Cover:     {self.cloudpct}")
-        print(f"Snow:            {self.snow}")
-        print(f"Rain:            {self.rain}")
+        data = {
+            "UV Index": self.uv_index,
+            "Heat Index": self.heat_index,
+            "Detailed Status": self.status,
+            "Temp (C)": self.tempC['temp'],
+            "Temp (F)": self.tempF['temp'],
+            "Humidity": self.humidity,
+            "Cloud Cover": self.cloudpct,
+            "Snow": self.snow,
+            "Rain": self.rain
+        }
+        Reporter(title="Weather Status", data=data).report()
+
 
 #@weather_api.route('/')
 def current_weather():

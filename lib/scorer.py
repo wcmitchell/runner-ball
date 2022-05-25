@@ -1,4 +1,5 @@
 import yaml
+from lib.reporter import Reporter
 
 class Scorer():
     def __init__(self, weather_stats):
@@ -57,8 +58,11 @@ class Scorer():
         elif percentage_diff < 0.5:
             return 0
 
+
     async def report(self):
-        print("\n====== Running Score ======")
-        print(f"Score:          {self.score}/5")
-        print(f"Ideal Min Temp: {self.preferences.get('weather').get('temperature').get('ideal_min')}")
-        print(f"Ideal Max Temp: {self.preferences.get('weather').get('temperature').get('ideal_max')}")
+        data = {
+                "Score": f"{self.score}/5",
+                "Ideal Min Temp": self.preferences.get('weather').get('temperature').get('ideal_min'),
+                "Ideal Max Temp": self.preferences.get('weather').get('temperature').get('ideal_max')
+            }
+        Reporter(title="Running Score", data=data).report()

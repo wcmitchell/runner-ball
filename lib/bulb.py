@@ -1,15 +1,19 @@
 from kasa import SmartBulb
+from lib.reporter import Reporter
 
 class Bulb(SmartBulb):
     async def report(self):
         await self.update()
+        power = "on" if self.is_on else "off"
+        data = {
+            "Power": power,
+            "Hue": self.hsv[0],
+            "Sat": self.hsv[1],
+            "Val": self.hsv[2],
+            "Temp": self.color_temp
+        }
+        Reporter(title="Bulb Status", data=data).report()
 
-        print("\n====== Bulb Status ======")
-        print(f'Power: {"on" if self.is_on else "off"}')
-        print(f'Hue:   {self.hsv[0]}')
-        print(f'Sat:   {self.hsv[1]}')
-        print(f'Val:   {self.hsv[2]}')
-        print(f'Temp:  {self.color_temp}')
 
     async def update_from_score(self, scorer):
         score = scorer.score
