@@ -1,3 +1,4 @@
+import os
 import yaml
 from lib.reporter import Reporter
 
@@ -8,7 +9,8 @@ class Scorer():
         self.score = self.score()
 
     def load_preferences(self):
-        with open("data/preferences.yml", "r") as file:
+        file_path = os.getenv("PREFERENCES_FILE_PATH", "data/preferences.yml")
+        with open(file_path, "r") as file:
             return yaml.safe_load(file)
 
     def score(self):
