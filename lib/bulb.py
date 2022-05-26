@@ -24,13 +24,13 @@ class Bulb(SmartBulb):
         if score == 5:
             hue = 120
         elif score == 4:
-            hue = 96
+            hue = 108
         elif score == 3:
-            hue = 72
+            hue = 84
         elif score == 2:
-            hue = 48
-        elif score == 1:
             hue = 24
+        elif score == 1:
+            hue = 12
         elif score == 0:
             hue = 0
 
