@@ -30,6 +30,14 @@ class Scorer():
             pref_max=max_temp_pref,
             current=current_temp)
 
+    def score_precipitation(self):
+        current_rain = self.weather_stats.rain
+        rain_allowed = self.preferences.get("weather").get("rain").get("allowed")
+        if (current_rain and rain_allowed) or not current_rain:
+            return 5
+        else:
+            return 0
+
     def determine_score(self, **kwargs):
         range_min = kwargs.get("range_min")
         range_max = kwargs.get("range_max")
