@@ -17,7 +17,18 @@ class Scorer():
         # score all metrics individually here
         # and then weight them based on preferences
         # to determine the final score
-        return self.score_temperature()
+        temp_score = self.weighted_score(self.score_temperature(), "temperature")
+        precip_score = self.weighted_score(self.score_precipitation(), "rain")
+        return round((temp_score + precip_score) / self.total_weights())
+
+    def total_weights(self):
+        weather_preferences = self.preferences.get("weather")
+        weights = [v["weight"] for v in weather_preferences.values()]
+        return sum(weights)
+
+    def weighted_score(self, score, preference_key):
+        weight = self.preferences.get("weather").get(preference_key).get("weight")
+        return score * weight
 
     def score_temperature(self):
         current_temp = self.weather_stats.tempF.get("temp")
@@ -29,6 +40,14 @@ class Scorer():
             pref_min=min_temp_pref,
             pref_max=max_temp_pref,
             current=current_temp)
+
+    def score_precipitation(self):
+        current_rain = self.weather_stats.rain
+        rain_allowed = self.preferences.get("weather").get("rain").get("allowed")
+        if (current_rain and rain_allowed) or not current_rain:
+            return 5
+        else:
+            return 0
 
     def determine_score(self, **kwargs):
         range_min = kwargs.get("range_min")
