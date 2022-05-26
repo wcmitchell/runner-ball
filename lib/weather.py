@@ -47,7 +47,7 @@ class WeatherStats():
             "Temp (F)": self.tempF['temp'],
             "Humidity": self.humidity,
             "Dew Point": self.dewpoint,
-            "Cloud Cover": self.cloudpct,
+            "Cloud Cover %": self.cloudpct,
             "Snow": self.snow,
             "Rain": self.rain
         }
