@@ -76,7 +76,7 @@ class Scorer():
             return 2
         elif percentage_diff < 0.4:
             return 1
-        elif percentage_diff < 0.5:
+        else:
             return 0
 
 
