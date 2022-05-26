@@ -4,6 +4,9 @@ weather:
     ideal_min: 40
     ideal_max: 50
     weight: 90
+  dewpoint:
+    ideal_min: 50
+    ideal_max: 60
   rain:
     allowed: false
     weight: 10

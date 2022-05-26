@@ -84,6 +84,8 @@ class Scorer():
         data = {
                 "Score": f"{self.score}/5",
                 "Ideal Min Temp": self.preferences.get('weather').get('temperature').get('ideal_min'),
-                "Ideal Max Temp": self.preferences.get('weather').get('temperature').get('ideal_max')
+                "Ideal Max Temp": self.preferences.get('weather').get('temperature').get('ideal_max'),
+                "Ideal Min Dew Point": self.preferences.get('weather').get('dewpoint').get('ideal_min'),
+                "Ideal Max Dew Point": self.preferences.get('weather').get('dewpoint').get('ideal_max')
             }
         Reporter(title="Running Score", data=data).report()
