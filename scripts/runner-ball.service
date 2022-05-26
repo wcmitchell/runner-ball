@@ -1,0 +1,13 @@
+[Unit]
+Description=Runner Ball Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi
+ExecStart=/home/pi/runner-ball/scripts/pi-run.sh
+
+[Install]
+WantedBy=multi-user.target

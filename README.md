@@ -61,6 +61,20 @@ each metric will influence the importance of the results as compared to your
 current weather. A higher weight will give the comparison more impact on your
 final score.
 
+## Raspberry Pi
+If you'd like to use a Raspberry Pi to run the program headless and control the bulb
+in the background on boot, do the following:
+
+- Clone this repo into `/home/pi/` on your Raspberry Pi
+- Run `./scripts/pi-install.sh`
+
+This will add a systemd unit file which will ensure internet connectivity prior
+to starting the service, and will start the service immediately, and on boot.
+
+- To stop the service: `systemctl stop runner-ball.service`
+- To start the service manually: `systemctl stop runner-ball.service`
+- To check service status: `systemctl status runner-ball.service`
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
