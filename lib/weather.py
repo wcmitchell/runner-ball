@@ -12,7 +12,7 @@ class WeatherStats():
         self.mgr = owm.weather_manager()
         reg = owm.city_id_registry()
         self.loc = reg.locations_for(os.getenv("CITY"), state=os.getenv("STATE"), country=(os.getenv("COUNTRY")))
-        if len(self.loc) > 1:
+        if self.loc:
             self.loc = self.loc[0]
         self.update_stats()
 

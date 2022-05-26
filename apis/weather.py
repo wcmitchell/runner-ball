@@ -11,11 +11,6 @@ from lib.weather import WeatherStats
 # Setup
 load_dotenv()
 stats = WeatherStats()
-#owm = OWM(os.getenv("OWM_APIKEY"))
-#mgr = owm.weather_manager()
-#reg = owm.city_id_registry()
-#loc = reg.locations_for(os.getenv("CITY"), state=os.getenv("STATE"), country=(os.getenv("COUNTRY")))
-
 
 
 #@weather_api.route('/')
