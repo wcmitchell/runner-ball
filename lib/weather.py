@@ -16,10 +16,12 @@ class WeatherStats():
 
     def get_weather(self):
         oc = self.mgr.one_call(lat=self.loc.lat, lon=self.loc.lon)
-        return oc.current
+        return oc
 
     def update_stats(self):
-        current_weather = self.get_weather()
+        self.weather = self.get_weather()
+        current_weather = self.weather.current
+
         self.uv_index = current_weather.uvi
         self.heat_index = current_weather.heat_index
         self.status = current_weather.detailed_status
