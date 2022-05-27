@@ -2,7 +2,7 @@ from flask import Blueprint, Response
 from lib.weather import WeatherStats
 from jsonpickle import encode
 
-weather_api = Blueprint('weather_api', __name__, url_prefix='/weather')
+weather_api = Blueprint('weather_api', __name__, url_prefix='/api/weather')
 
 @weather_api.route('/')
 def current_weather():
