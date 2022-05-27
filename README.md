@@ -35,10 +35,28 @@ CITY="city name"
 STATE="two letter state code"
 ```
 
-Run:
+#### Run the async process to update your bulb:
+This will kick off a process that will continually ping the weather API based on
+`INTERVAL_SECONDS` and update your score/bulb accordingly, at that interval. **It
+is _not_ dependent on the Flask API to run.**
 ```
 $ python3 ./app.py
 ```
+
+#### Run the Flask API service:
+This will expose APIs to render real-time data for weather, your bulb, and your
+score context. **It is _not_ dependent on the async process to run.**
+```
+$ flask run
+```
+Available APIs:
+| API                                          | Description                                                                |
+| -------------------------------------------- | -------------------------------------------------------------------------- |
+| /api/weather/                                | Current weather, based on location                                         |
+| /api/weather/forecast/                       | Full weather forecast, based on location                                   |
+| /api/weather/forecast/minutely|hourly|daily/ | Optional granular (minutely|hourly|daily) forecast, based on location      |
+| /api/bulb/                                   | Current and historical data from your Kasa bulb                            |
+| /api/score/                                  | Your current running score (and context), based on weather and preferences |
 
 ## Preferences
 Ideal weather/running preferences are set in a yaml file, default location being

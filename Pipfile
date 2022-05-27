@@ -4,11 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
+flask = {extras = ["async"], version = "*"}
 pyowm = "*"
 python-kasa = "*"
 python-dotenv = "*"
 pyyaml = "*"
+jsonpickle = "*"
 
 [dev-packages]
 
