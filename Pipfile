@@ -9,6 +9,7 @@ pyowm = "*"
 python-kasa = "*"
 python-dotenv = "*"
 pyyaml = "*"
+jsonpickle = "*"
 
 [dev-packages]
 
