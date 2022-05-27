@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 from flask import Blueprint, jsonify
 from pyowm import OWM
 import json
@@ -9,7 +8,6 @@ from lib.weather import WeatherStats
 #weather_api = Blueprint('weather_api', url_prefix='/weather')
 
 # Setup
-load_dotenv()
 stats = WeatherStats()
 
 
