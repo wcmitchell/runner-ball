@@ -3,10 +3,19 @@ weather:
   temperature:
     ideal_min: 40
     ideal_max: 50
-    weight: 90
+    weight: 15
   dewpoint:
     ideal_min: 50
     ideal_max: 60
+    weight: 50
   rain:
     allowed: false
+    weight: 10
+  humidity:
+    ideal_min: 5
+    ideal_max: 20
+    weight: 50
+  cloudcover:
+    ideal_min: 15
+    ideal_max: 75
     weight: 10

@@ -4,6 +4,6 @@ class Reporter():
         self.data = kwargs.get("data")
 
     def report(self):
-        print(f"\n====== {self.title} ======")
+        print(f"\n======= {self.title} =======")
         for k,v in self.data.items():
-            print(f"{k:20}{v}")
+            print(f"{k:25}{v}")
