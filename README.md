@@ -30,7 +30,9 @@ Set your environment by saving `.env-example` as `.env`:
 BULB_HOST="the host of your smart bulb (see Kasa docs below)"
 INTERVAL_SECONDS="how often the event loop should run in seconds"
 OWM_APIKEY="your OpenWeather API key"
-LOCATION="your location for weather results"
+COUNTRY="two letter country code"
+CITY="city name"
+STATE="two letter state code"
 ```
 
 Run:

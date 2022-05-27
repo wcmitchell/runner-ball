@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 import json
 import os
 from pyowm import OWM
@@ -7,7 +6,6 @@ from .reporter import Reporter
 
 class WeatherStats():
     def __init__(self):
-        load_dotenv()
         owm = OWM(os.getenv("OWM_APIKEY"))
         self.mgr = owm.weather_manager()
         reg = owm.city_id_registry()
