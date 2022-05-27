@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from flask import Flask
 from apis.weather import weather_api
 from apis.bulb import bulb_api
+from apis.score import score_api
 from kasa.exceptions import SmartDeviceException
 from lib.bulb import Bulb
 from lib.scorer import Scorer
@@ -17,6 +18,7 @@ from pyowm.commons.exceptions import InvalidSSLCertificateError, TimeoutError
 app = Flask(__name__)
 app.register_blueprint(weather_api)
 app.register_blueprint(bulb_api)
+app.register_blueprint(score_api)
 
 load_dotenv()
 
