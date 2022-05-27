@@ -5,12 +5,16 @@ import time
 
 from dotenv import load_dotenv
 from flask import Flask
-from apis.weather import current_weather
+from apis.weather import weather_api
 from kasa.exceptions import SmartDeviceException
 from lib.bulb import Bulb
 from lib.scorer import Scorer
 from lib.signal_handler import SignalHandler
+from lib.weather import WeatherStats
 from pyowm.commons.exceptions import InvalidSSLCertificateError, TimeoutError
+
+app = Flask(__name__)
+app.register_blueprint(weather_api)
 
 load_dotenv()
 
@@ -21,7 +25,7 @@ async def main():
 
     while signal_handler.KEEP_ALIVE:
         try:
-            weather_stats = current_weather()
+            weather_stats = WeatherStats()
             scorer = Scorer(weather_stats)
             await bulb.update_from_score(scorer)
             await report(bulb, weather_stats, scorer)

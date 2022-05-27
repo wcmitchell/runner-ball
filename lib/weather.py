@@ -14,10 +14,6 @@ class WeatherStats():
             self.loc = self.loc[0]
         self.update_stats()
 
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-            sort_keys=True, indent=4)
-
     def get_weather(self):
         oc = self.mgr.one_call(lat=self.loc.lat, lon=self.loc.lon)
         return oc.current
@@ -35,6 +31,12 @@ class WeatherStats():
         self.dewpoint = round(((current_weather.dewpoint-273)*1.8)+32, 2)
         self.snow = current_weather.snow
         self.rain = current_weather.rain
+
+    # If present, jsonpickle will use this for what gets serialized
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        state.pop('mgr', None)
+        return state
 
     async def report(self):
         data = {
